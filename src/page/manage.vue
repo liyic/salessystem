@@ -1,7 +1,17 @@
 <template>
 	<div class="manage_page fillcontain">
         <div class="header_container">
-
+            <el-row>
+                <el-col :span="4">
+                    <img class="logo" src="../assets/img/alluser/logo-white.png" alt="">
+                    <span>销售管理系统</span>
+                    <img class="menu" src="../assets/img/alluser/menu.png" alt="">
+                </el-col>
+                <el-col :span="20" style="padding-left: 20px">
+                    <span class="header-time">{{time}}</span>
+                    <img class="header-export" src="../assets/img/alluser/export.png" alt="">
+                </el-col>
+            </el-row>
         </div>
 		<el-row style="height: 100%;padding-top: 80px">
 	  		<el-col :span="4"  style="min-height: 100%; background-color: #324057;">
@@ -32,11 +42,30 @@
 
 <script>
     export default {
+        data(){
+            return {
+                time: "今天是：",
+            }
+        },
+        mounted(){
+            const date = new Date();
+            let month = (date.getMonth()+1);
+            let weekdayArray = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"]
+
+            if(month<10){
+                month = "0"+month
+            }
+            this.time = "今天是："+date.getFullYear()+"-"+month+"-"+date.getDate()+"   ,    "+weekdayArray[date.getDay()];
+        },
 		computed: {
 			defaultActive: function(){
 				return this.$route.path.replace('/', '');
+
 			}
 		},
+        methods:{
+
+        }
     }
 </script>
 
@@ -49,14 +78,40 @@
 
         }
 	}
+    .header-time{
+        font-weight: 600;
+        font-size: 18px;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        text-align: center;
+        line-height: 20px;
+
+    }
+    .header-export{
+        float: right;
+        margin-top: 28px;
+        margin-right: 50px;
+        cursor: pointer;
+    }
     .header_container{
         position: fixed;
         top: 0px;
         width: 100%;
         background-color: #4B5E75;
         height: 80px;
+        line-height: 80px;
         justify-content: space-between;
         align-items: center;
-        padding-left: 20px;
+
+        color: #ffffff;
+        .logo{
+            position: relative;
+            top: 2px;
+            margin-left: 20px;
+        }
+        .menu{
+            float: right;
+            margin-top: 28px;
+        }
     }
 </style>
