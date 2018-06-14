@@ -96,17 +96,23 @@ html,body{
 .mtop20{
     margin-top: 20px;
 }
+.mtop40{
+    margin-top: 40px;
+}
 .mtop60{
     margin-top: 60px;
 }
 .mleft20{
-    margin-left: 20px;
+    margin-left: 20px !important;
 }
 .mleft40{
     margin-left: 40px;
 }
 .maincolor{
     color: #369FFF;
+}
+.middle-btn{
+    padding: 10px 30px !important;
 }
 .big-btn{
     padding:10px 50px !important;
@@ -126,6 +132,7 @@ html,body{
     border: 1px solid #c4c4c4;
     color: #fff;
     margin: 0;
+    font-size: 14px;
     padding: 10px 15px;
     border-radius: 2px;
 }
@@ -136,4 +143,42 @@ html,body{
 .btn.btn-main:hover{
     opacity: 0.8;
     color: #fff;
+}
+.btn.btn-main:active{
+    color: #fff;
+}
+.btn.btn-main:visited{
+    color: #fff;
+}
+.search-cnt{
+    float: right;
+    width: 340px;
+    height: 36px;
+    .search-btn{
+        background-color: #369FFF !important;
+        border-radius: 0px !important;
+        border: none !important;
+        color: #fff !important;
+    }
+}
+.box-module{
+    padding: 20px 20px;
+    box-shadow: 0 1px 4px 0 rgb(209,209,209,0.50);
+
+    .cell{
+        text-align: center;
+    }
+    .el-table th ,.el-table th>.cell{
+        background-color: rgb(75,84,115);
+        color: #fff;
+    }
+    td>.cell{
+        font-size: 13px;
+    }
+    .el-pagination{
+        text-align: right;
+    }
+    .el-pagination__total,.el-pagination__sizes{
+        float: left;
+    }
 }

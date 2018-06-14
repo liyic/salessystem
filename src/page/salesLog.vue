@@ -480,27 +480,7 @@
         width:340px ;
         text-align: left;
     }
-    .box-module{
-        padding: 20px 20px;
-        box-shadow: 0 1px 4px 0 rgb(209,209,209,0.50);
 
-        .cell{
-            text-align: center;
-        }
-        .el-table th ,.el-table th>.cell{
-            background-color: rgb(75,84,115);
-            color: #fff;
-        }
-        td>.cell{
-            font-size: 13px;
-        }
-        .el-pagination{
-            text-align: right;
-        }
-        .el-pagination__total,.el-pagination__sizes{
-            float: left;
-        }
-    }
     .sbox-module{
         display: flex;
         box-shadow: 0 1px 4px 0 rgb(209,209,209,0.50);
@@ -533,17 +513,7 @@
             height: 140px;
         }
     }
-    .search-cnt{
-        float: right;
-        width: 340px;
-        height: 36px;
-        .search-btn{
-            background-color: #369FFF !important;
-            border-radius: 0px !important;
-            border: none !important;
-            color: #fff !important;
-        }
-    }
+
     .el-dialog__footer{
         text-align: center;
     }

@@ -1,133 +1,264 @@
 <template>
-    <div>
-		<section class="data_section">
-			<header class="section_title">数据统计</header>
-			<el-row :gutter="20" style="margin-bottom: 10px;">
-                <el-col :span="4"><div class="data_list today_head"><span class="data_num head">当日数据：</span></div></el-col>
-				<el-col :span="4"><div class="data_list"><span class="data_num">{{userCount}}</span> 新增用户</div></el-col>
-				<el-col :span="4"><div class="data_list"><span class="data_num">{{orderCount}}</span> 新增订单</div></el-col>
-                <el-col :span="4"><div class="data_list"><span class="data_num">{{adminCount}}</span> 新增管理员</div></el-col>
-			</el-row>
-            <el-row :gutter="20">
-                <el-col :span="4"><div class="data_list all_head"><span class="data_num head">总数据：</span></div></el-col>
-                <el-col :span="4"><div class="data_list"><span class="data_num">{{allUserCount}}</span> 注册用户</div></el-col>
-                <el-col :span="4"><div class="data_list"><span class="data_num">{{allOrderCount}}</span> 订单</div></el-col>
-                <el-col :span="4"><div class="data_list"><span class="data_num">{{allAdminCount}}</span> 管理员</div></el-col>
-            </el-row>
-		</section>
-		<tendency :sevenDate='sevenDate' :sevenDay='sevenDay'></tendency>
-    </div>
+    <el-row>
+        <el-col :span="22" :offset="1" style="padding-top: 20px">
+            <!--主要的信息-->
+            <div v-if="state==='meain'">
+                <ul class="usermanager-header">
+                    <li :class="{active:state2=='all'}">
+                        全部用户（1200）
+                    </li>
+                    <li :class="{active:state2=='new'}">
+                        新注册用户（20）
+                    </li>
+                    <li :class="{active:state2=='pass'}">
+                        已过期用户（15）
+                    </li>
+                </ul>
+                <div class="mtop40">
+                    <!--全部用户-->
+                    <div v-if="state2==='all'" class="box-module">
+                        <div>
+                            <button class="btn btn-main middle-btn" type="button">账号申请</button>
+                            <button class="btn btn-main middle-btn mleft20" type="button">统计数据</button>
+                            <el-input class="search-cnt" placeholder="请输入内容" v-model="search_cnt">
+                                <template slot="append"><el-button class="search-btn" type="primary">搜索</el-button></template>
+                            </el-input>
+                        </div>
+                        <div class="mtop40">
+                            <el-table
+                                :data="table_data"
+                                style="width: 100%;margin-top: 20px;text-align: center">
+                                <el-table-column
+                                    prop="number"
+                                    label="序号"
+                                    width="120">
+                                </el-table-column>
+                                <el-table-column
+                                    prop="phone_number"
+                                    label="手机号码"
+                                    width="130">
+                                </el-table-column>
+                                <el-table-column
+                                    prop="owned_company"
+                                    label="所属公司"
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                    prop="name"
+                                    label="姓名"
+                                    width="130">
+                                </el-table-column>
+                                <el-table-column
+                                    prop="duties"
+                                    label="注册日期"
+                                    width="130">
+                                </el-table-column>
+                                <el-table-column
+                                    prop="date"
+                                    label="申请产品"
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                    prop="operation"
+                                    label="用户状态"
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                    prop="operation"
+                                    label="审核状态"
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                    prop="operation"
+                                    label="账号状态"
+                                >
+                                </el-table-column>
+                            </el-table>
+                            <div class="block mtop20">
+                                <el-pagination
+                                    @size-change="handleSizeChange"
+                                    @current-change="handleCurrentChange"
+                                    :current-page="currentPage4"
+                                    :page-sizes="[10, 20, 50,]"
+                                    :page-size="10"
+                                    layout="total, sizes, prev, pager, next, jumper"
+                                    :total=alltale_total>
+                                </el-pagination>
+                            </div>
+                        </div>
+                    </div>
+                    <!--新注册用户-->
+                    <div v-else-if="state2==='new'" class="box-module"></div>
+                    <!--已过期用户-->
+                    <div v-else-if="state2==='pass'" class="box-module"></div>
+                </div>
+            </div>
+            <!--账号申请-->
+            <div v-else-if="state==='application_account'"></div>
+            <!--统计数据-->
+            <div v-else-if="state==='stats'">
+                <static-cnt>
+
+                </static-cnt>
+            </div>
+        </el-col>
+    </el-row>
 </template>
 
 <script>
 
 	import tendency from '../components/tendency'
 	import dtime from 'time-formater'
-	import {userCount, orderCount, getUserCount, getOrderCount, adminDayCount, adminCount} from '@/api/getData'
+
     export default {
     	data(){
     		return {
-    			userCount: null,
-    			orderCount: null,
-                adminCount: null,
-                allUserCount: null,
-                allOrderCount: null,
-                allAdminCount: null,
-    			sevenDay: [],
-    			sevenDate: [[],[],[]],
+                state:"main",
+                state2:"all",
+                search_cnt:"",
+                currentPage1: 5,
+                currentPage2: 5,
+                currentPage3: 5,
+                currentPage4: 4,
+                alltale_total:1232,
+                table_data:[
+                    {
+                        number:"01",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"02",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"03",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"04",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"05",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"06",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"07",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"08",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"09",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                    {
+                        number:"10",
+                        phone_number:"13301608967",
+                        owned_company:"上海琻瑢信息科技有限公司",
+                        name:"某某某",
+                        duties:"总经理",
+                        date:"2018-04-15",
+                        operation:"添加拜访日志"
+                    },
+                ],
     		}
     	},
     	components: {
-
-    		tendency,
+    	    staticCnt
     	},
     	mounted(){
-    		this.initData();
-    		for (let i = 6; i > -1; i--) {
-    			const date = dtime(new Date().getTime() - 86400000*i).format('YYYY-MM-DD')
-    			this.sevenDay.push(date)
-    		}
-    		this.getSevenData();
+
     	},
         computed: {
 
         },
     	methods: {
-    		async initData(){
-    			const today = dtime().format('YYYY-MM-DD')
-    			Promise.all([userCount(today), orderCount(today), adminDayCount(today), getUserCount(), getOrderCount(), adminCount()])
-    			.then(res => {
-    				this.userCount = res[0].count;
-    				this.orderCount = res[1].count;
-                    this.adminCount = res[2].count;
-                    this.allUserCount = res[3].count;
-                    this.allOrderCount = res[4].count;
-                    this.allAdminCount = res[5].count;
-    			}).catch(err => {
-    				console.log(err)
-    			})
-    		},
-    		async getSevenData(){
-    			const apiArr = [[],[],[]];
-    			this.sevenDay.forEach(item => {
-    				apiArr[0].push(userCount(item))
-    				apiArr[1].push(orderCount(item))
-                    apiArr[2].push(adminDayCount(item))
-    			})
-    			const promiseArr = [...apiArr[0], ...apiArr[1], ...apiArr[2]]
-    			Promise.all(promiseArr).then(res => {
-    				const resArr = [[],[],[]];
-					res.forEach((item, index) => {
-						if (item.status == 1) {
-							resArr[Math.floor(index/7)].push(item.count)
-						}
-					})
-					this.sevenDate = resArr;
-    			}).catch(err => {
-    				console.log(err)
-    			})
-    		}
+            handleSizeChange(val) {
+                console.log(`每页 ${val} 条`);
+            },
+            handleCurrentChange(val) {
+                console.log(`当前页: ${val}`);
+            },
     	}
     }
 </script>
 
 <style lang="less">
 	@import '../style/mixin';
-	.data_section{
-		padding: 20px;
-		margin-bottom: 40px;
-		.section_title{
-			text-align: center;
-			font-size: 30px;
-			margin-bottom: 10px;
-		}
-		.data_list{
-			text-align: center;
-			font-size: 14px;
-			color: #666;
-            border-radius: 6px;
-            background: #E5E9F2;
-            .data_num{
-                color: #333;
-                font-size: 26px;
-
-            }
-            .head{
-                border-radius: 6px;
-                font-size: 22px;
-                padding: 4px 0;
-                color: #fff;
-                display: inline-block;
-            }
+    @import '../style/common';
+    .usermanager-header{
+        width: 100%;
+        background: #FAFAFC;
+        border: 1px solid #DFDFDF;
+        display: flex;
+        li{
+            background: #FFFFFF;
+            border-left: 1px solid #ECEAED;
+            border-right: 1px solid #ECEAED;
+            width: 160px;
+            height: 38px;
+            line-height: 2.6;
+            text-align: center;
+            font-size: 14px;
         }
-        .today_head{
-            background: #FF9800;
+        li.active{
+            color:#5EA3C5;
+            border-left: none;
+            border-right: none;
+            border-bottom: 2px solid #5EA3C5;
         }
-        .all_head{
-            background: #20A0FF;
-        }
-	}
-    .wan{
-        .sc(16px, #333)
     }
+
 </style>
