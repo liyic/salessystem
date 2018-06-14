@@ -2,7 +2,7 @@
     <el-row>
         <el-col :span="22" :offset="1" style="padding-top: 20px">
             <!--主要的信息-->
-            <div v-if="state==='meain'">
+            <div v-if="state==='main'">
                 <ul class="usermanager-header">
                     <li :class="{active:state2=='all'}">
                         全部用户（1200）
@@ -94,7 +94,110 @@
                 </div>
             </div>
             <!--账号申请-->
-            <div v-else-if="state==='application_account'"></div>
+            <div v-else-if="state==='application_account'">
+                <el-row style="margin-top: 40px;">
+                    <el-col :span="22" :offset="1">
+                        <div class="user-info-title">
+                            <i class="el-icon-arrow-left"></i>
+                            <span class="mleft20">用户信息</span>
+                        </div>
+                    </el-col>
+                    <el-col class="box-module mtop40" :span="22" :offset="1">
+                        <el-col :span="12" class="mtop20" style="border-right: 2px solid #DFDFDF;">
+                            <div style="text-align: center">
+                                <el-form class="from1" :model="userinfo1" :rules="rules1" ref="userinfo1">
+                                    <el-form-item prop="username">
+                                        <p>姓名：</p>
+                                        <el-input v-model="userinfo1.username" placeholder="用户名"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <p>手机号码：</p>
+                                        <el-input v-model="userinfo1.usercompany"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <p>所属公司：</p>
+                                        <el-input v-model="userinfo1.userduties"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <p>所属客户经理：</p>
+                                        <el-select class="selected" v-model="customersource" clearable placeholder="请选择">
+                                            <el-option
+                                                v-for="item in origin"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <p>用户状态：</p>
+                                        <el-select class="selected" v-model="user_status" clearable placeholder="请选择">
+                                            <el-option
+                                                v-for="item in status_op"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <p>账号申请日期</p>
+                                        <el-date-picker
+                                            v-model="value1"
+                                            type="date"
+                                            placeholder="选择日期" style="width: 340px">
+                                        </el-date-picker>
+                                        <span style="color: red;font-size: 12px;">此处备注：默认为填写当天日期</span>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                        </el-col>
+                        <el-col :span="12" class="mtop20">
+                            <div style="text-align: center">
+                                <el-form class="from1" :model="userinfo2" :rules="rules2" ref="userinfo2">
+                                    <el-form-item prop="userphone">
+                                        <p>账号有效期<span>（当前账号权限7天）</span></p>
+                                        <el-input v-model="userinfo2.expiration_date"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <p>申请产品</p>
+                                        <el-checkbox-group v-model="checkList">
+                                            <el-checkbox label="FOF Easy"></el-checkbox>
+                                            <el-checkbox label="FOF Power"></el-checkbox>
+                                            <el-checkbox label="数据库"></el-checkbox>
+                                        </el-checkbox-group>
+                                    </el-form-item>
+
+                                    <el-form-item>
+                                        <p>名片信息：</p>
+                                        <div class="add-card" v-show="!is_have_card" style="width: 340px">
+                                            <el-upload
+                                                class="upload-demo"
+                                                drag
+                                                action="https://jsonplaceholder.typicode.com/posts/"
+                                                multiple>
+                                                <i class="el-icon-plus" style="position: relative;top: -10px;"></i>
+                                                <div class="el-upload__text" style="display: inline-block;width:70%;">
+                                                    <div style="height: 18px;">添加名片信息</div>
+                                                    <div style="height: 18px;">只支持JPG、PNG、大小不超过5M</div>
+                                                </div>
+                                            </el-upload>
+                                        </div>
+                                        <div v-show="is_have_card">
+                                            <img src="../assets/img/Bitmap.png" alt="">
+                                            <span class="right maincolor" style="line-height: 108px">修改名片信息</span>
+                                        </div>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <p><span>备注信息</span></p>
+                                        <el-input type="textarea" ></el-input>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                        </el-col>
+                    </el-col>
+                </el-row>
+            </div>
             <!--统计数据-->
             <div v-else-if="state==='stats'">
                 <static-cnt>
@@ -107,20 +210,22 @@
 
 <script>
 
-	import tendency from '../components/tendency'
 	import dtime from 'time-formater'
-
+    import staticCnt from './statisticalAnalysis'
     export default {
     	data(){
     		return {
-                state:"main",
+                state:"stats",
                 state2:"all",
                 search_cnt:"",
                 currentPage1: 5,
+                note:"",
                 currentPage2: 5,
                 currentPage3: 5,
                 currentPage4: 4,
                 alltale_total:1232,
+                user_status:"",
+                is_have_card:false,
                 table_data:[
                     {
                         number:"01",
@@ -213,6 +318,53 @@
                         operation:"添加拜访日志"
                     },
                 ],
+                checkList: ['选中且禁用','复选框 A'],
+                value1:"",
+                value4:"",
+                customersource:"",
+                ownedmanager:"",
+                userinfo1:{
+                    username:"",
+                    usercompany:"",
+                    userduties:"",
+                    useremail:"",
+                },
+                userinfo2:{
+                    expiration_date:"7天",
+                },
+                origin:[{
+                    value: 'admin',
+                    label: '管理员'
+                }],
+                belong:[{
+                    value: 'admin',
+                    label: '管理员'
+                }],
+                ownedmanager:[{
+                    value: '11',
+                    label: '某某某'
+                }],
+                status_op:[
+                        {value:"新注册"},
+                        {value:"试用用户"},
+                        {value:"付费用户"}
+                    ],
+                rules1: {
+                    username: [
+                        { required: true, message: '请输入用户名', trigger: 'blur' },
+                    ],
+                    password: [
+                        { required: true, message: '请输入密码', trigger: 'blur' }
+                    ],
+                },
+                rules2: {
+                    username: [
+                        { required: true, message: '请输入用户名', trigger: 'blur' },
+                    ],
+                    password: [
+                        { required: true, message: '请输入密码', trigger: 'blur' }
+                    ],
+                },
     		}
     	},
     	components: {

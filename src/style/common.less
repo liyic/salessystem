@@ -114,7 +114,7 @@ html,body{
 .middle-btn{
     padding: 10px 30px !important;
 }
-.big-btn{
+.btn.big-btn{
     padding:10px 50px !important;
 }
 .f12{
@@ -182,3 +182,140 @@ html,body{
         float: left;
     }
 }
+.from1{
+    display: inline-block;
+    width:340px ;
+    text-align: left;
+}
+.el-select{
+    display: block;
+}
+.el-upload-dragger{
+    width: 340px;
+    height: auto;
+}
+.user-info-title{
+    font-size: 18px;
+    color: #333333;
+    border-bottom:1px solid #DFDFDF;
+}
+.product-category{
+    border-bottom:1px solid #ECEAED;
+    .cayegory-btn{
+        cursor: pointer;
+        width: 180px;
+        height: 40px;
+        background: #FFFFFF;
+        border: 1px solid #ECEAED;
+        margin-left: -5px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        font-size: 14px;
+    }
+    .cayegory-btn.active{
+        background-color: #369FFF;
+        color: #fff;
+    }
+}
+.staticprc{
+    display: flex;
+    .card{
+        flex: 1;
+        display: flex;
+        background: #FFFFFF;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.18);
+        padding: 30px 20px;
+        margin-left: 20px;
+        .img{
+            flex: 1;
+        }
+        .text{
+            flex: 1;
+            .number{
+                margin-top: 20px;
+                opacity: 0.8;
+                font-family: MicrosoftYaHei-Bold;
+                font-size: 18px;
+                color: #333333;
+                letter-spacing: 0;
+                text-align: center;
+                line-height: 18px;
+            }
+            .title{
+                margin-top: 10px;
+                opacity: 0.8;
+                font-family: MicrosoftYaHei;
+                font-size: 14px;
+                color: #333333;
+                letter-spacing: 0;
+                text-align: center;
+                line-height: 14px;
+            }
+        }
+
+    }
+}
+.frq-div{
+    background-color: #f4f4f4;
+
+}
+.m-lr20{
+    margin: 0 20px;
+}
+.date-picker-div{
+    display: flex;
+    .title{
+        line-height: 32px;
+    }
+    .center{
+        margin: 0 15px;
+        line-height: 32px;
+    }
+}
+.tab {
+    .tab.inline>.tabItem {
+        vertical-align: middle
+    }
+
+    .tabItem {
+        display: inline-block;
+        font-size: 0;
+        padding-right: 30px
+    }
+
+    .tabItem.active .tabLink:after {
+        display: block
+    }
+
+    .tabItem:last-child {
+        padding-right: 0
+    }
+
+    .tabLink {
+        font-size: 14px;
+        display: block;
+        line-height: 35px;
+        color: #70757b;
+        position: relative;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .tabLink:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        border-bottom: 2px solid #5EA3C5;
+        display: none
+    }
+
+    .tabLink:hover:after {
+        display: block
+    }
+}
+
+
+
+

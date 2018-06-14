@@ -5,8 +5,8 @@
             <el-col class="box-module" :span="22" :offset="1">
                 <div>
                     <el-button class="btn btn-main" type="button">新增潜在客户</el-button>
-                    <el-button class="btn btn-main" type="button">填写拜访日志</el-button>
-                    <el-button class="btn btn-main" type="text" @click="centerDialogVisible = true">统计数据</el-button>
+                    <el-button class="btn btn-main" type="text" @click="centerDialogVisible = true">填写拜访日志</el-button>
+                    <el-button class="btn btn-main" type="button">统计数据</el-button>
                     <el-input class="search-cnt" placeholder="请输入内容" v-model="search_cnt">
                         <template slot="append"><el-button class="search-btn" type="primary">搜索</el-button></template>
                     </el-input>
@@ -289,7 +289,7 @@
                 note:"",
                 value4:"",
                 checkList: ['选中且禁用','复选框 A'],
-                state:"main",
+                state:"stats",
                 search_cnt:"",
                 total:1232,
                 textarea: '',
@@ -464,22 +464,11 @@
         background-color: #369FFF;
         color: #fff;
     }
-    .user-info-title{
-        font-size: 18px;
-        color: #333333;
-        border-bottom:1px solid #DFDFDF;
-    }
+
     .el-form-item{
         margin-bottom: 12px;
     }
-    .el-select{
-        display: block;
-    }
-    .from1{
-        display: inline-block;
-        width:340px ;
-        text-align: left;
-    }
+
 
     .sbox-module{
         display: flex;
