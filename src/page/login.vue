@@ -41,8 +41,9 @@
 <script>
 	import {login, getAdminInfo} from '@/api/getData'
 	import {mapActions, mapState} from 'vuex'
+    import {baseUrl} from "../config/env";
 
-	export default {
+    export default {
 	    data(){
 			return {
 				loginForm: {
@@ -84,22 +85,30 @@
 			...mapActions(['getAdminData']),
 			async submitForm(formName) {
 				this.$refs[formName].validate(async (valid) => {
+				    let that = this
 					if (valid) {
-						const res = await login({user_name: this.loginForm.username, password: this.loginForm.password})
-						if (res.status == 1) {
-							this.$message({
-		                        type: 'success',
-		                        message: '登录成功'
-		                    });
-							this.$router.push('manage')
-						}else{
-							this.$message({
-		                        type: 'error',
-		                        message: res.message
-		                    });
-						}
+						//const res = await login({user_name: this.loginForm.username, password: this.loginForm.password})
+                        this.axios.post(baseUrl+"/login",{
+                            user_name:that.loginForm.username,
+                            password:that.loginForm.password,
+                            type:that.value4,
+                        }).then(function(res) {
+                            if (res.data.response.code == 1) {
+                                sessionStorage.setItem("user_info",JSON.stringify({user_name:that.loginForm.username,user_pwd:that.loginForm.password,user_type:that.value4}));
+                                that.$message({
+                                    type: 'success',
+                                    message: res.data.response.msg
+                                });
+                                that.$router.push('manage')
+                            }else{
+                                that.$message({
+                                    type: 'error',
+                                    message: res.data.response.msg
+                                });
+                            }
+                        });
 					} else {
-						this.$notify.error({
+                        that.$notify.error({
 							title: '错误',
 							message: '请输入正确的用户名密码',
 							offset: 100

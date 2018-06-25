@@ -1,9 +1,6 @@
 <template>
     <div>
-        <div class="user-info-title">
-            <i class="el-icon-arrow-left"></i>
-            <span class="mleft20">用户信息</span>
-        </div>
+
         <div class="mtop20">
             <div class="product-category">
                 <button class="cayegory-btn active" type="button" style="margin-left: 0;">全部产品</button>

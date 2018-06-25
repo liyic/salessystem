@@ -11,18 +11,18 @@
                         <el-form class="from1" :model="pwdinfo" :rules="rules1" ref="userinfo1">
                             <el-form-item prop="origin_pwd">
                                 <p>请输入您的原密码</p>
-                                <el-input v-model="pwdinfo.origin_pwd" placeholder="用户名"></el-input>
+                                <el-input type="password" v-model="pwdinfo.origin_pwd" placeholder="原密码"></el-input>
                             </el-form-item>
                             <el-form-item prop="new_pwd1">
                                 <p>请输入您的新密码</p>
-                                <el-input type="password" v-model="pwdinfo.new_pwd1"></el-input>
+                                <el-input type="password" v-model="pwdinfo.new_pwd1" placeholder="新密码"></el-input>
                             </el-form-item>
                             <el-form-item prop="new_pwd2">
                                 <p>请再次确认您的新密码</p>
-                                <el-input type="password" v-model="pwdinfo.new_pwd2"></el-input>
+                                <el-input type="password" v-model="pwdinfo.new_pwd2" placeholder="确认新密码"></el-input>
                             </el-form-item>
                             <el-form-item prop="new_pwd2">
-                                <el-button class="big-btn" type="primary" style="margin-left: 115px">保存</el-button>
+                                <el-button class="big-btn" type="primary" @click="submitForm('userinfo1')" style="margin-left: 115px">保存</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -34,7 +34,7 @@
 
 <script>
     import {getCategory, addCategory, addFood} from '@/api/getData'
-    import {baseUrl, baseImgPath} from '@/config/env'
+    import {baseUrl} from "../config/env";
     export default {
     	data(){
     		return {
@@ -65,13 +65,61 @@
 
     	},
     	methods: {
-
+            async submitForm(formName) {
+                this.$refs[formName].validate(async (valid) => {
+                    var that = this
+                    if (valid) {
+                       let old_info = JSON.parse(sessionStorage.getItem("user_info"));
+                       if(that.pwdinfo.origin_pwd!=old_info.user_pwd){
+                           that.$notify.error({
+                               title: '错误',
+                               message: '你的原始密码好像不太对',
+                               offset: 100
+                           });
+                       }else{
+                           if(that.pwdinfo.new_pwd1!==that.pwdinfo.new_pwd2){
+                               that.$notify.error({
+                                   title: '错误',
+                                   message: '2次密码不一致',
+                                   offset: 100
+                               });
+                           }else{
+                               this.axios.post(baseUrl+"/modify_pwd",{
+                                   user_name:old_info.user_name,
+                                   password:that.pwdinfo.new_pwd1,
+                                   type:old_info.user_type,
+                               }).then(function(res) {
+                                   if (res.data.params.code == 1) {
+                                       that.$message({
+                                           type: 'success',
+                                           message: res.data.params.msg
+                                       });
+                                       sessionStorage.setItem("user_info",JSON.stringify({user_name:that.loginForm.username,user_pwd:that.pwdinfo.new_pwd1,user_type:that.value4}))
+                                   }else{
+                                       that.$message({
+                                           type: 'error',
+                                           message: res.data.params.msg
+                                       });
+                                   }
+                               });                           }
+                       }
+                    } else {
+                        that.$notify.error({
+                            title: '错误',
+                            message: '请输入正确的原密码和新密码',
+                            offset: 100
+                        });
+                        return false;
+                    }
+                });
+            },
 		}
     }
 </script>
 
 <style lang="less">
 	@import '../style/mixin';
+
     .modify-pwd-div{
         .wh(100%,528px);
         margin-top: 40px;
