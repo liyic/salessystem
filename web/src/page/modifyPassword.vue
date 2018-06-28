@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <el-row style="margin-top: 20px;">
             <el-col :span="22" :offset="1">
                 <div class="user-info-title">
@@ -39,7 +38,6 @@
     	data(){
     		return {
     			baseUrl,
-    			baseImgPath,
                 pwdinfo:{
                     origin_pwd:"",
                     new_pwd1:"",

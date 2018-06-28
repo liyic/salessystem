@@ -1,137 +1,70 @@
 <template>
-    <div class="line1">
-        <div id="line1" class="" style="width: 90%;height:450px;"></div>
+    <div class="x-bar">
+        <div :id="id"
+             :option="option"></div>
     </div>
+
 </template>
 
 <script>
-    import echarts from 'echarts/lib/echarts';
-    // 引入柱状图
-    import 'echarts/lib/chart/bar';
-    import 'echarts/lib/chart/line';
-    import 'echarts/lib/component/title';
-    import 'echarts/lib/component/legend';
-    import 'echarts/lib/component/toolbox';
-    import 'echarts/lib/component/markPoint';
-    import 'echarts/lib/component/tooltip';
+    import HighCharts from 'highcharts/highcharts';
     export default {
         mounted(){
-            this.myChart = echarts.init(document.getElementById('line1'));
+            this.myChart = HighCharts.chart(document.getElementById('line1'));
             this.initData();
         },
-        props: ['sevenDate', 'sevenDay'],
+        props: ['categories', 'series'],
         methods: {
             initData(){
-                const colors = ['#5793f3', '#675bba', '#d14a61'];
                 const option = {
-                    color: colors,
+                    chart: {
+                        type: 'area'
+                    },
                     title: {
-                        text: '走势图',
-                        subtext: ''
+                        text: ''
                     },
-                    tooltip: {
-                        trigger: 'axis'
+                    subtitle: {
                     },
-                    legend: {
-                        data:['新注册用户', '新增订单', '新增管理员']
+                    xAxis: {
+                        categories: this.categories
                     },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            dataZoom: {
-                                yAxisIndex: 'none'
-                            },
-                            dataView: {readOnly: false},
-                            magicType: {type: ['bar', 'line']},
-                            restore: {},
+                    yAxis: {
+                        title: {
+                            text: ''
+                        },
+                    },
+                    // tooltip: {
+                    //     pointFormat: '{series.name} 制造 <b>{point.y:,.0f}</b>枚弹头'
+                    // },
+                    plotOptions: {
+                        area: {
+                            marker: {
+                                enabled: false,
+                                symbol: 'circle',
+                                radius: 2,
+                                states: {
+                                    hover: {
+                                        enabled: true
+                                    }
+                                }
+                            }
                         }
                     },
-                    xAxis:  {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: this.sevenDay
-                    },
-                    yAxis: [
-                        {
-                          type: 'value',
-                          name: '用户',
-                          min: 0,
-                          max: 200,
-                          position: 'left',
-                          axisLine: {
-                              lineStyle: {
-                                  color: '#999'
-                              }
-                          },
-                          axisLabel: {
-                              formatter: '{value}'
-                          }
-                        },
-                        {
-                          type: 'value',
-                          name: '订单',
-                          min: 0,
-                          max: 200,
-                          position: 'right',
-                          axisLine: {
-                              lineStyle: {
-                                  color: '#999'
-                              }
-                          },
-                          axisLabel: {
-                              formatter: '{value}'
-                          }
-                        },
-                    ],
-                    series: [
-                        {
-                            name:'新注册用户',
-                            type:'line',
-                            data:this.sevenDate[0],
-                            yAxisIndex: 1,
-                            markPoint: {
-                                data: [
-                                    {type: 'max', name: '最大值'},
-                                    {type: 'min', name: '最小值'}
-                                ]
-                            },
-                        },
-                        {
-                            name:'新增订单',
-                            type:'line',
-                            data:this.sevenDate[1],
-                            yAxisIndex: 1,
-                            markPoint: {
-                                data: [
-                                    {type: 'max', name: '最大值'},
-                                    {type: 'min', name: '最小值'}
-                                ]
-                            },
-                        },
-                        {
-                            name:'新增管理员',
-                            type:'line',
-                            data:this.sevenDate[2],
-                            yAxisIndex: 1,
-                            markPoint: {
-                                data: [
-                                    {type: 'max', name: '最大值'},
-                                    {type: 'min', name: '最小值'}
-                                ]
-                            },
-                        }
-                    ]
-              };
+                    series: [{
+                        name:"拜访客户数",
+                        data:[1,1,1,1,1,1,1,1,3]
+                    }]
+                }
                 this.myChart.setOption(option);
             }
         },
         watch: {
-            sevenDate: function (){
+            categories: function (){
                 this.initData()
             },
-            sevenDay: function (){
-                this.initData()
-            }
+            // series: function (){
+            //     this.initData()
+            // }
         }
     }
 </script>

@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b22a80ee-312a-4d5e-bbe9-88a85a33a006" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/getData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/getData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/env.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/fetch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/modifyPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/modifyPassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/statisticalAnalysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/statisticalAnalysis.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style/common.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/common.less" afterDir="false" />
-    </list>
+    <list default="true" id="b22a80ee-312a-4d5e-bbe9-88a85a33a006" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -26,115 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/page/login.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
-              <folding>
-                <element signature="e#1667#1716#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/page/manage.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="17" column="81" selection-start-line="17" selection-start-column="81" selection-end-line="17" selection-end-column="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="statisticalAnalysis.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/page/statisticalAnalysis.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/style/common.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="311" column="21" lean-forward="true" selection-start-line="311" selection-start-column="21" selection-end-line="311" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/page/home.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="614" column="49" selection-start-line="614" selection-start-column="42" selection-end-line="614" selection-end-column="49" />
-              <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#el-table#0;n#div#0;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-table#0;n#section#0;n#div#2;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-col#0;n#el-col#0;n#el-form#0;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#el-col#0;n#el-col#0;n#el-form#0;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-date-picker#0;n#el-form-item#5;n#el-form#0;n#div#0;n#el-col#0;n#el-col#1;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#el-col#1;n#el-col#0;n#el-form#0;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#el-form-item#1;n#div#0;n#el-col#1;n#el-col#0;n#el-form#0;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-checkbox-group#0;n#el-form-item#1;n#div#0;n#el-col#1;n#el-col#0;n#el-form#0;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#el-form-item#2;n#el-form#0;n#div#0;n#el-col#1;n#el-col#1;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#el-upload#0;n#div#0;n#el-form-item#2;n#el-form#0;n#div#0;n#el-col#1;n#el-col#1;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#el-form-item#2;n#el-form#0;n#div#0;n#el-col#1;n#el-col#1;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-button#0;n#el-col#2;n#el-col#1;n#el-row#0;n#div#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="env.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config/env.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="salesLog.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/page/salesLog.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
-              <caret line="443" column="14" selection-start-line="443" selection-start-column="14" selection-end-line="443" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modifyPassword.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/page/modifyPassword.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="34" lean-forward="true" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-              <folding>
-                <element signature="n#style#0;n#el-button#0;n#el-form-item#3;n#el-form#0;n#div#0;n#div#1;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#1618#1681#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -200,9 +79,7 @@
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
-    <package-json value="$PROJECT_DIR$/package.json" />
-  </component>
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -214,16 +91,18 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
+    <handled-path value="$PROJECT_DIR$/api/node_modules" />
+    <handled-path value="$PROJECT_DIR$/web/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
-      <path value="$PROJECT_DIR$/package.json" />
+      <path value="$PROJECT_DIR$/api/package.json" />
+      <path value="$PROJECT_DIR$/web/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="42" />
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="45" />
+    <option name="y" value="31" />
     <option name="width" value="1440" />
     <option name="height" value="809" />
   </component>
@@ -350,23 +229,22 @@
       <workItem from="1529630045042" duration="9297000" />
       <workItem from="1529646873927" duration="5390000" />
       <workItem from="1529653464762" duration="6325000" />
-      <workItem from="1529891655637" duration="8671000" />
+      <workItem from="1529891655637" duration="8693000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157571000" />
+    <option name="totallyTimeSpent" value="157593000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="47" y="23" width="1440" height="809" extended-state="0" />
-    <editor active="true" />
+    <frame x="45" y="31" width="1440" height="809" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15138888" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50208336" side_tool="true" weight="0.10748299" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3170068" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49791667" visible="true" weight="0.043537416" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49791667" weight="0.043537416" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

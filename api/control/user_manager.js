@@ -3,6 +3,7 @@
 const monk = require('monk');
 const url = '47.106.150.86:2018/sales_system';
 const db = monk(url);
+const uid = require('uuid');
 const collection = db.get('user_info');
 const ucs_user = require('../sql/ucs_user');
 const catch_msg = "抱歉，发生了不正常的事情，请再多试试。";
@@ -33,14 +34,12 @@ const login = async (ctx, next) => {
             res_state = true;
             if (docs.length != 0) {
                 res_msg = "登录成功";
-                console.log(res_msg);
                 res_code = 1;
             } else {
                 res_msg = "请输入正确的用户名密码";
                 res_code = 0;
             }
         } catch (err) {
-            console.log(err);
             ctx.body = {"params": catch_msg, "success": false}
         }
     });
@@ -85,7 +84,7 @@ let query = function (sql, values) {
                 return {data:err,success:false}
             } else {
                 resolve(rows)
-                return {data:rows,success:true}
+                return rows
             }
         })
     })
@@ -110,7 +109,6 @@ const search_table = async (ctx, next) => {
 
     }else {
         type_code = "";
-
     }
     let sql = "SELECT uu.id,uu.apply_status,uu.mobile,uu.company,uu.real_name,uu.create_time,status FROM easy_user_test.ucs_user uu WHERE CONCAT(mobile,company,real_name) LIKE '%"+search_content+"%' "+type_code+" ORDER BY create_time DESC limit "+page+","+per_page
     let sql2 = "SELECT COUNT(*) FROM easy_user_test.ucs_user WHERE CONCAT(mobile,company,real_name) LIKE '%"+search_content+"%' "+type_code
@@ -173,23 +171,23 @@ const apply_extension = async (ctx, next) => {
  */
 const account_apply = async (ctx, next) => {
     let params = ctx.request.body;
-    let sql = "INSERT INTO ucs_user (real_name,mobile,company,account_manager,user_status,create_time,effective_day,apply_product,remarks,status) VALUES("+params.real_name+","+params.mobile+","+params.company+","+params.account_manager+","+params.user_status+","+params.creat_time+","+params.effective_day+","+params.apply_product+","+params.remarks+",1)";
-    const status = query(sql);
+    let id = uid.v1().replace(/\-/g,'');
+    let sql = "INSERT INTO easy_user_test.ucs_user (id,real_name,mobile,company,account_manager,user_status,create_time,effective_day,apply_product,remarks,status) VALUES('"+id+"','"+params.real_name+"',"+params.mobile+",'"+params.company+"','"+params.account_manager+"',"+params.user_status+",'"+params.creat_time+"',"+params.effective_day+","+params.apply_product+",'"+params.remarks+"',1)";
+    const status = await query(sql);
     let code = 0;
     let rstate = false;
     let msg = "";
-    if(status.success){
+
+    if(status){
         code = 1;
-        console.log(status)
         rstate = true;
         msg = "添加成功"
-
     }else{
         rstate = false
         code = 0;
         msg = status.data;
     }
-    ctx.body = {"response": {msg: msg,code: code}, "success": true};
+    ctx.body = {"response": {msg: msg,code: code}, "success": rstate};
 }
 module.exports = {
     login: login,

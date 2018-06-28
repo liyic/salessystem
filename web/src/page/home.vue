@@ -147,7 +147,7 @@
                 <el-row style="margin-top: 40px;">
                     <el-col :span="24">
                         <div class="user-info-title">
-                            <i @click="toggle('main')" class="el-icon-arrow-left"></i>
+                            <i @click="toggle('main')" class="el-icon-arrow-left hand"></i>
                             <span class="mleft20">账号申请</span>
                         </div>
                     </el-col>
@@ -167,8 +167,8 @@
                                         <p class="left">所属公司：</p>
                                         <el-input v-model="userinfo1.company"></el-input>
                                     </el-form-item>
-                                    <el-form-item>
-                                        <p class="left">所属客户经理：</p>
+                                    <p class="fleft f14">所属客户经理：</p>
+                                    <el-form-item class="mtop20">
                                         <el-select class="selected" v-model="userinfo1.account_manager" clearable
                                                    placeholder="请选择">
                                             <el-option
@@ -179,8 +179,8 @@
                                             </el-option>
                                         </el-select>
                                     </el-form-item>
-                                    <el-form-item prop="user_status">
-                                        <p class="left">用户状态：</p>
+                                    <p class="fleft f14">用户状态：</p>
+                                    <el-form-item prop="user_status" class="mtop20">
                                         <el-select class="selected" v-model="userinfo1.user_status" clearable placeholder="请选择">
                                             <el-option
                                                 v-for="item in status_op"
@@ -253,7 +253,7 @@
             <!--统计数据-->
             <div v-else-if="state==='stats'">
                 <div class="user-info-title">
-                    <i @click="toggle('main')" class="el-icon-arrow-left"></i>
+                    <i @click="toggle('main')" class="el-icon-arrow-left hand"></i>
                     <span class="mleft20">用户信息</span>
                 </div>
                 <static-cnt>
@@ -272,7 +272,7 @@
     export default {
         data() {
             return {
-                state: "application_account",
+                state: "main",
                 state2: "all",
                 currentPage1: 1,
                 note: "",
@@ -292,7 +292,7 @@
                     account_manager:"",
                     user_status:null,
                     creat_time:"",
-                    effective_day:7,
+                    effective_day:"",
                     apply_product:[],
                     Card_img:"",
                     remarks:"",
@@ -624,7 +624,32 @@
                     }
 
                     this.axios.post(baseUrl+"/account_apply",params).then(function(res) {
-                       console.log(res);
+                       if(res.data.success){
+                           if(res.data.response.code==1){
+                               that.$message({
+                                   type: 'success',
+                                   message: res.data.response.msg
+                               });
+                               that.userinfo1={
+                                   real_name:"",
+                                       mobile: "",
+                                       company: "",
+                                       account_manager:"",
+                                       user_status:null,
+                                       creat_time:"",
+                                       effective_day:"",
+                                       apply_product:[],
+                                       Card_img:"",
+                                       remarks:"",
+                                       multipleSelection:[],
+                               }
+                           }else{
+                               that.$notify.error({
+                                   title: '错误',
+                                   message: "好像出了点问题。请再试一次"
+                               });
+                           }
+                       }
                     });
                 });
             }
